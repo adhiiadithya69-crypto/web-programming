@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+
+    <style>
+        .btn {
+            border: none;
+            padding: 10px 18px;
+            color: black;
+            background-color: cyan;
+            margin-left: 18px;
+            border-radius: 8px;
+            margin-top: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body bgcolor="green">
+
+    <h1 align="center">FORM VALIDATION</h1>
+
+    <center>
+        <form name="form" action="" method="POST"
+              onsubmit="return validate_form()">
+
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><input type="tel" name="mobile"></td>
+                </tr>
+
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="user"></td>
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="reset" class="btn" value="Reset">
+                    </td>
+
+                    <td>
+                        <input type="submit" class="btn" value="Submit">
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </center>
+
+    <script type="text/javascript">
+
+        function validate_form() {
+
+            var name = document.form.name.value;
+            var email = document.form.email.value;
+            var mobile = document.form.mobile.value;
+            var user = document.form.user.value;
+            var password = document.form.password.value;
+
+            
+            var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      
+            if (name == "") {
+                alert("Name is required, Enter name");
+                document.form.name.focus();
+                return false;
+            }
+            else if (!/^[a-zA-Z ]+$/.test(name)) {
+                alert("Enter valid name");
+                document.form.name.focus();
+                return false;
+            }
+
+        
+            if (email == "") {
+                alert("Enter email");
+                document.form.email.focus();
+                return false;
+            }
+            else if (!pattern.test(email)) {
+                alert("Enter a valid email");
+                document.form.email.focus();
+                return false;
+            }
+
+            
+            if (mobile == "") {
+                alert("Enter mobile number");
+                document.form.mobile.focus();
+                return false;
+            }
+            else if (!/^[0-9]{10}$/.test(mobile)) {
+                alert("Enter a valid 10-digit mobile number");
+                document.form.mobile.focus();
+                return false;
+            }
+
+          
+            if (user == "") {
+                alert("Enter username");
+                document.form.user.focus();
+                return false;
+            }
+
+        
+            var pass_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+
+            if (password == "") {
+                alert("Enter password");
+                document.form.password.focus();
+                return false;
+            }
+            else if (!pass_pattern.test(password)) {
+                alert("Password must contain minimum 8 characters, at least one lowercase letter, one uppercase letter, one digit and one special character");
+                document.form.password.focus();
+                return false;
+            }
+
+            alert("Form has been submitted successfully");
+            return true;
+        }
+
+    </script>
+
+</body>
+</html>
+
